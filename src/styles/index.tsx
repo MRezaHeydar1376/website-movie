@@ -33,6 +33,7 @@ interface PropsButton {
     border?: string;
     borderRadius?: string;
     hoverBorder?: string;
+    margin?: string;
 }
 
 interface PropsText {
@@ -45,6 +46,16 @@ interface PropsText {
     top?: string;
     left?: string;
     colorHover?: string;
+}
+
+interface PropsImg {
+    borderRadius?: string;
+    width?: string;
+    height?: string;
+    position?: string;
+    top?: string;
+    left?: string;
+    cursor?: string;
 }
 
 export const Div = styled.div<PropsDiv>`
@@ -92,6 +103,7 @@ export const Button = styled.button<PropsButton>`
     align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     border: ${({ border = "1px solid black" }) => (border ? border : "1px solid black")};
     border-radius: ${({ borderRadius = "1px solid black" }) => (borderRadius ? borderRadius : "1px solid black")};
+    margin: ${({ margin = "0px" }) => (margin ? margin : "0px")};
     cursor: pointer;
     &:hover {
         border-bottom: ${({ hoverBorder = "none" }) => (hoverBorder ? hoverBorder : "none")};
@@ -101,7 +113,7 @@ export const H1 = styled.h1<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -115,7 +127,7 @@ export const H2 = styled.h2<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -129,7 +141,7 @@ export const H3 = styled.h3<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -143,7 +155,7 @@ export const H4 = styled.h4<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -157,7 +169,7 @@ export const H5 = styled.h5<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -171,7 +183,7 @@ export const H6 = styled.h6<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -185,7 +197,7 @@ export const Paragraph = styled.p<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
@@ -194,4 +206,13 @@ export const Paragraph = styled.p<PropsText>`
     &:hover{
         color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
     }
+`
+export const Img = styled.img<PropsImg>`
+    border-radius: ${({ borderRadius = "0%" }) => (borderRadius ? borderRadius : "0%")};
+    width: ${({ width = "100%" }) => (width ? width : "100%")};
+    height: ${({ height = "auto" }) => (height ? height : "auto")};
+    position: ${({ position = "block" }) => (position ? position : "block")};
+    top: ${({ top = "0px" }) => (top ? top : "0px")};
+    left: ${({ left = "0px" }) => (left ? left : "0px")};
+    cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
 `
