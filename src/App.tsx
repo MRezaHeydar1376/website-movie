@@ -2,6 +2,8 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import apiConfig from './api/api_config';
 import tmdbApi, { MovieType, TvType } from './api/tmdbApi';
+import { Home } from './pages';
+import { Div } from './styles';
 
 function App() {
   useEffect(() => {
@@ -18,9 +20,9 @@ function App() {
     })()
   }, [])
   return (
-    <div>
-      Hello World!
-    </div>
+    <Div>
+      <Home />
+    </Div>
   );
 }
 
