@@ -1,6 +1,13 @@
 import apiConfig from "./api_config";
 import axiosClient from "./axios_client";
 
+export interface MovieObject {
+    page: number;
+    results: Movie[];
+    total_pages: number;
+    total_results: number;
+}
+
 export interface Movie {
     key: string;
     adult: boolean;
@@ -44,7 +51,7 @@ export enum Category {
 
 const tmdbApi = {
     getMoviesList: (type: MovieType, page: number) => {
-        return axiosClient.get(`3/movie/${type}?api_key=${apiConfig.api_Key}&page=${page}`)
+        return axiosClient.get<MovieObject>(`3/movie/${type}?api_key=${apiConfig.api_Key}&page=${page}`)
     },
     getTvList: (type: TvType, page: number) => {
         return axiosClient.get(`3/tv/${type}?api_key=${apiConfig.api_Key}&page=${page}`)
