@@ -1,26 +1,22 @@
-import axios from 'axios';
-import React, { useEffect } from 'react';
-import apiConfig from './api/api_config';
-import tmdbApi, { MovieType, TvType } from './api/tmdbApi';
+import { css, Global } from '@emotion/react';
+import TopNav from './layouts/top_nav';
 import { Home } from './pages';
 import { Div } from './styles';
 
 function App() {
-  useEffect(() => {
-    (async () => {
-      try {
-        const movies = await tmdbApi.getMoviesList(MovieType.popular, 3)
-        const tv = await tmdbApi.getTvList(TvType.popular, 2)
-        console.log(movies)
-        console.log(tv)
-      }
-      catch (error) {
-        console.log(error)
-      }
-    })()
-  }, [])
   return (
     <Div>
+      <Global
+        styles={css`
+         body{
+            margin: 0;
+            padding: 0;
+          }
+        `}
+      />
+      <Div position='fixed' zIndex='2'>
+        <TopNav />
+      </Div>
       <Home />
     </Div>
   );

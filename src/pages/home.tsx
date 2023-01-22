@@ -1,10 +1,11 @@
-import Header from "../layouts/header";
+import { Header } from "../components";
 import { Div } from "../styles";
 
 function Home() {
+
     return (
         <Div>
-            <Header/>
+            <Header />
         </Div>
     );
 }
