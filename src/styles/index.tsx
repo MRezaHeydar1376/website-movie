@@ -32,20 +32,20 @@ interface PropsButton {
     align?: string;
     border?: string;
     borderRadius?: string;
-    hoverBorder?: string;
     margin?: string;
+    borderButtom?: string;
 }
 
 interface PropsText {
     fontSize?: string;
     color?: string;
+    hoverColor?: string;
     fontWeight?: string;
     margin?: string;
     cursor?: string;
     position?: string;
     top?: string;
     left?: string;
-    colorHover?: string;
 }
 
 interface PropsImg {
@@ -56,6 +56,7 @@ interface PropsImg {
     top?: string;
     left?: string;
     cursor?: string;
+    filter?: string;
 }
 
 export const Div = styled.div<PropsDiv>`
@@ -102,12 +103,10 @@ export const Button = styled.button<PropsButton>`
     justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
     align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     border: ${({ border = "1px solid black" }) => (border ? border : "1px solid black")};
+    border-bottom: ${({ borderButtom = "none" }) => (borderButtom ? borderButtom : "none")};
     border-radius: ${({ borderRadius = "1px solid black" }) => (borderRadius ? borderRadius : "1px solid black")};
     margin: ${({ margin = "0px" }) => (margin ? margin : "0px")};
     cursor: pointer;
-    &:hover {
-        border-bottom: ${({ hoverBorder = "none" }) => (hoverBorder ? hoverBorder : "none")};
-    }
 `
 export const H1 = styled.h1<PropsText>`
     font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
@@ -120,7 +119,7 @@ export const H1 = styled.h1<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const H2 = styled.h2<PropsText>`
@@ -134,7 +133,7 @@ export const H2 = styled.h2<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const H3 = styled.h3<PropsText>`
@@ -148,7 +147,7 @@ export const H3 = styled.h3<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const H4 = styled.h4<PropsText>`
@@ -162,7 +161,7 @@ export const H4 = styled.h4<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const H5 = styled.h5<PropsText>`
@@ -176,7 +175,7 @@ export const H5 = styled.h5<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const H6 = styled.h6<PropsText>`
@@ -190,7 +189,7 @@ export const H6 = styled.h6<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const Paragraph = styled.p<PropsText>`
@@ -204,7 +203,7 @@ export const Paragraph = styled.p<PropsText>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     &:hover{
-        color: ${({ colorHover = "none" }) => (colorHover ? colorHover : "none")};
+        color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
 `
 export const Img = styled.img<PropsImg>`
@@ -215,4 +214,6 @@ export const Img = styled.img<PropsImg>`
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
+    filter: brightness(${({ filter = "100%" }) => (filter ? filter : "auto")});
 `
+
