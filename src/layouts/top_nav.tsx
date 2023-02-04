@@ -15,19 +15,19 @@ function TopNav() {
         <Div
             width="100%"
             margin="0 auto"
-            display="flex"
+            displays={{xs: "flex", sm: "flex", md: "flex", lg: "flex" }}
             justify="space-around"
             align="center"
             position="absolute"
             top="0px"
             left="auto"
         >
-            <Div display="flex" align="center" margin="20px">
-                <Img src={Logo} width="50px" height="50px" />
+            <Div displays={{xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" margin="20px">
+                <Img src={Logo} Width={{xs: "30px", sm: "50px"}} Height={{xs: "30px", sm: "50px"}}/>
                 <H1
                     margin="0 10px"
-                    fontWeight="700"
-                    fontSize="40px"
+                    fontSize={{xs: "15px", sm: "20px", md: "30px", lg: "40px" }}
+                    fontWeight={{ sm: "500", md: "500", lg: "700" }}
                     cursor="pointer"
                     color={Color.white}
                     hoverColor={Color.red}
@@ -35,7 +35,7 @@ function TopNav() {
                     tMovies
                 </H1>
             </Div>
-            <Div display="flex" align="center" justify="end" margin="20px">
+            <Div displays={{xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" justify="end" margin="20px">
                 <Button
                     width="80px"
                     height="40px"
@@ -45,8 +45,8 @@ function TopNav() {
                     onClick={() => activeButton(1)}
                 >
                     <H3
-                        fontWeight="700"
-                        fontSize="23px"
+                        fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
+                        fontWeight={{ sm: "500", md: "500", lg: "700" }}
                         cursor="pointer"
                         color={Color.white}
                         hoverColor={Color.red}
@@ -65,8 +65,8 @@ function TopNav() {
                     onClick={() => activeButton(2)}
                 >
                     <H3
-                        fontWeight="700"
-                        fontSize="23px"
+                        fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
+                        fontWeight={{ sm: "500", md: "500", lg: "700" }}
                         cursor="pointer"
                         color={Color.white}
                         hoverColor={Color.red}
@@ -83,8 +83,8 @@ function TopNav() {
                     onClick={() => activeButton(3)}
                 >
                     <H3
-                        fontWeight="700"
-                        fontSize="23px"
+                        fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
+                        fontWeight={{ sm: "500", md: "500", lg: "700" }}
                         cursor="pointer"
                         color={Color.white}
                         hoverColor={Color.red}
