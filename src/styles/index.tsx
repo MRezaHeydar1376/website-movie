@@ -4,7 +4,7 @@ import { Color } from "../variables";
 interface PropsDiv {
     width?: string;
     height?: string;
-    display?: string;
+    displays?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
     justify?: string;
     align?: string;
     direction?: string;
@@ -34,13 +34,15 @@ interface PropsButton {
     borderRadius?: string;
     margin?: string;
     borderButtom?: string;
+    hoverBackgrond?: string;
+    hoverColor?: string;
 }
 
 interface PropsText {
-    fontSize?: string;
+    fontSize?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
     color?: string;
     hoverColor?: string;
-    fontWeight?: string;
+    fontWeight?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
     margin?: string;
     cursor?: string;
     position?: string;
@@ -49,9 +51,9 @@ interface PropsText {
 }
 
 interface PropsImg {
+    Width?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
+    Height?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
     borderRadius?: string;
-    width?: string;
-    height?: string;
     position?: string;
     top?: string;
     left?: string;
@@ -59,10 +61,23 @@ interface PropsImg {
     filter?: string;
 }
 
+const breakPoints = {
+    xs: "370px",
+    sm: "576px",
+    md: "768px",
+    lg: "992px",
+    xl: "1265px",
+    xxl: "1400px",
+}
+
 export const Div = styled.div<PropsDiv>`
+    ${(props) => Object.entries(props.displays ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                display: ${value};
+            }`
+})};
     width: ${({ width = "100%" }) => (width ? width : "100%")};
     height: ${({ height = "auto" }) => (height ? height : "auto")};
-    display: ${({ display = "block" }) => (display ? display : "block")};
     justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
     align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     flex-direction: ${({ direction = "row" }) => (direction ? direction : "row")};
@@ -96,6 +111,7 @@ export const Div = styled.div<PropsDiv>`
     }
 `
 export const Button = styled.button<PropsButton>`
+    padding: 0;
     width: ${({ width = "100%" }) => (width ? width : "100%")};
     height: ${({ height = "auto" }) => (height ? height : "auto")};
     background-color: ${({ backgrondColor = "transparent" }) => (backgrondColor ? backgrondColor : "transparent")};
@@ -107,11 +123,27 @@ export const Button = styled.button<PropsButton>`
     border-radius: ${({ borderRadius = "1px solid black" }) => (borderRadius ? borderRadius : "1px solid black")};
     margin: ${({ margin = "0px" }) => (margin ? margin : "0px")};
     cursor: pointer;
+    &:hover {
+        background-color: ${({ hoverBackgrond = "none" }) => (hoverBackgrond ? hoverBackgrond : "none")};
+    }
 `
 export const H1 = styled.h1<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+    ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+    height: 100%;
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -123,9 +155,17 @@ export const H1 = styled.h1<PropsText>`
     }
 `
 export const H2 = styled.h2<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+      ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -137,9 +177,22 @@ export const H2 = styled.h2<PropsText>`
     }
 `
 export const H3 = styled.h3<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -151,9 +204,17 @@ export const H3 = styled.h3<PropsText>`
     }
 `
 export const H4 = styled.h4<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+      ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -165,9 +226,17 @@ export const H4 = styled.h4<PropsText>`
     }
 `
 export const H5 = styled.h5<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+  ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -179,9 +248,17 @@ export const H5 = styled.h5<PropsText>`
     }
 `
 export const H6 = styled.h6<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+  ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -193,9 +270,17 @@ export const H6 = styled.h6<PropsText>`
     }
 `
 export const Paragraph = styled.p<PropsText>`
-    font-size: ${({ fontSize = "auto" }) => (fontSize ? fontSize : "auto")};
+      ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                font-size: ${value};
+            }`
+})};
+    ${(props) => Object.entries(props.fontWeight ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+            font-weight: ${value};
+            }`
+})};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
-    font-weight: ${({ fontWeight = "500" }) => (fontWeight ? fontWeight : "500")};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
@@ -207,9 +292,17 @@ export const Paragraph = styled.p<PropsText>`
     }
 `
 export const Img = styled.img<PropsImg>`
+   ${(props) => Object.entries(props.Width ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                width: ${value};
+            }`
+})};
+ ${(props) => Object.entries(props.Height ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                height: ${value};
+            }`
+})};
     border-radius: ${({ borderRadius = "0%" }) => (borderRadius ? borderRadius : "0%")};
-    width: ${({ width = "100%" }) => (width ? width : "100%")};
-    height: ${({ height = "auto" }) => (height ? height : "auto")};
     position: ${({ position = "block" }) => (position ? position : "block")};
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
