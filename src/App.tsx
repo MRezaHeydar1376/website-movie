@@ -11,6 +11,7 @@ function App() {
          body{
             margin: 0;
             padding: 0;
+            background:#0f0f0f;
           }
         `}
       />
