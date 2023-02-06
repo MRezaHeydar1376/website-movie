@@ -48,6 +48,7 @@ interface PropsText {
     position?: string;
     top?: string;
     left?: string;
+    textAlign?: string;
 }
 
 interface PropsImg {
@@ -138,6 +139,7 @@ export const H1 = styled.h1<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     display: flex;
     align-items: center;
     justify-content: start;
@@ -165,6 +167,7 @@ export const H2 = styled.h2<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -192,6 +195,7 @@ export const H3 = styled.h3<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -214,6 +218,7 @@ export const H4 = styled.h4<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -221,6 +226,7 @@ export const H4 = styled.h4<PropsText>`
     position: ${({ position = "block" }) => (position ? position : "block")};
     top: ${({ top = "0px" }) => (top ? top : "0px")};
     left: ${({ left = "0px" }) => (left ? left : "0px")};
+    text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     &:hover{
         color: ${({ hoverColor = "none" }) => (hoverColor ? hoverColor : "none")};
     }
@@ -236,6 +242,7 @@ export const H5 = styled.h5<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -258,6 +265,7 @@ export const H6 = styled.h6<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -280,6 +288,7 @@ export const Paragraph = styled.p<PropsText>`
             font-weight: ${value};
             }`
 })};
+text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
