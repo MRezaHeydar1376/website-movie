@@ -19,7 +19,6 @@ function Header() {
         (async () => {
             try {
                 const movies = await tmdbApi.getMoviesList(MovieType.popular, 1)
-                console.log(movies.data.results.slice(1, 5))
                 setBackgrounds(movies.data.results.slice(1, 5))
             }
             catch (error) {
