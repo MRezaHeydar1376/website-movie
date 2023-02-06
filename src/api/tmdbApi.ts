@@ -8,6 +8,13 @@ export interface MovieObject {
     total_results: number;
 }
 
+export interface TVObject {
+    page: number;
+    results: Movie[];
+    total_pages: number;
+    total_results: number;
+}
+
 export interface Movie {
     key: string;
     adult: boolean;
@@ -26,12 +33,23 @@ export interface Movie {
     vote_count: number;
 };
 
-interface Response {
-    page: number;
-    total_pages: number;
-    total_results: number;
-    results: Movie[];
-}
+export interface Tv {
+    key: string;
+    adult: boolean;
+    backdrop_path: string;
+    genre_ids: number[];
+    id: number;
+    original_language: string;
+    original_title: string;
+    overview: string;
+    popularity: string;
+    poster_path: string;
+    release_date: string;
+    title: string;
+    video: boolean;
+    vote_average: number;
+    vote_count: number;
+};
 
 export enum MovieType {
     upcoming = 'upcoming',
@@ -54,7 +72,7 @@ const tmdbApi = {
         return axiosClient.get<MovieObject>(`3/movie/${type}?api_key=${apiConfig.api_Key}&page=${page}`)
     },
     getTvList: (type: TvType, page: number) => {
-        return axiosClient.get(`3/tv/${type}?api_key=${apiConfig.api_Key}&page=${page}`)
+        return axiosClient.get<TVObject>(`3/tv/${type}?api_key=${apiConfig.api_Key}&page=${page}`)
     },
     getVideos: (category: Category, id: number) => {
         return axiosClient.get(`3/${category}/${id}/videos?api_key=${apiConfig.api_Key}`)
