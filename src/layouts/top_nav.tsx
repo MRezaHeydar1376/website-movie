@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "../assets";
 import { Button, Div, H1, H3, Img } from "../styles";
 import { Color } from "../variables";
@@ -6,27 +6,45 @@ import { Color } from "../variables";
 function TopNav() {
 
     const [active, setActive] = useState(1);
+    const [navbar, setNavbar] = useState(false)
 
     function activeButton(id: number) {
         setActive(id)
     };
 
+    const changeBackground = () => {
+        console.log(window.scrollY)
+        if (window.scrollY >= 66) {
+            setNavbar(true)
+        } else {
+            setNavbar(false)
+        }
+    }
+
+    useEffect(() => {
+        changeBackground()
+        // adding the event when scroll change background
+        window.addEventListener("scroll", changeBackground)
+    }, [navbar,changeBackground])
+
     return (
         <Div
             width="100%"
+            height={navbar ? "70px" : "auto"}
             margin="0 auto"
-            displays={{xs: "flex", sm: "flex", md: "flex", lg: "flex" }}
+            displays={{ xs: "flex", sm: "flex", md: "flex", lg: "flex" }}
             justify="space-around"
             align="center"
             position="absolute"
             top="0px"
             left="auto"
+            backgroundColor={navbar ? Color.black_500 : "transparent"}
         >
-            <Div displays={{xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" margin="20px">
-                <Img src={Logo} Width={{xs: "30px", sm: "50px"}} Height={{xs: "30px", sm: "50px"}}/>
+            <Div displays={{ xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" margin="20px">
+                <Img src={Logo} Width={{ xs: "30px", sm: "50px" }} Height={{ xs: "30px", sm: "50px" }} />
                 <H1
                     margin="0 10px"
-                    fontSize={{xs: "15px", sm: "20px", md: "30px", lg: "40px" }}
+                    fontSize={{ xs: "15px", sm: "20px", md: "30px", lg: "40px" }}
                     fontWeight={{ sm: "500", md: "500", lg: "700" }}
                     cursor="pointer"
                     color={Color.white}
@@ -35,7 +53,7 @@ function TopNav() {
                     tMovies
                 </H1>
             </Div>
-            <Div displays={{xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" justify="end" margin="20px">
+            <Div displays={{ xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" justify="end" margin="20px">
                 <Button
                     width="80px"
                     height="40px"
