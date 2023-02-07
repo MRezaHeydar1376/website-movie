@@ -1,4 +1,5 @@
 import { css, Global } from '@emotion/react';
+import Footer from './layouts/footer';
 import TopNav from './layouts/top_nav';
 import { Home } from './pages';
 import { Div } from './styles';
@@ -19,6 +20,7 @@ function App() {
         <TopNav />
       </Div>
       <Home />
+      <Footer />
     </Div>
   );
 }
