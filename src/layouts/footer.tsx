@@ -1,5 +1,5 @@
 import { FooterBg, Logo } from "../assets";
-import { Div, H1, H3, Img, Ul } from "../styles";
+import { Div, H1, H3, Img } from "../styles";
 import { Color } from "../variables";
 
 function Footer() {
