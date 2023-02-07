@@ -13,7 +13,6 @@ function TopNav() {
     };
 
     const changeBackground = () => {
-        console.log(window.scrollY)
         if (window.scrollY >= 66) {
             setNavbar(true)
         } else {
@@ -23,7 +22,6 @@ function TopNav() {
 
     useEffect(() => {
         changeBackground()
-        // adding the event when scroll change background
         window.addEventListener("scroll", changeBackground)
     }, [navbar,changeBackground])
 
