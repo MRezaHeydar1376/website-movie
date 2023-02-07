@@ -70,6 +70,10 @@ function TopNav() {
                         cursor="pointer"
                         color={Color.white}
                         hoverColor={Color.red}
+                        height="100%"
+                        display="flex"
+                        justify="center"
+                        align="center"
                     >
                         Movies
                     </H3>
