@@ -21,6 +21,7 @@ interface PropsDiv {
     margin?: string;
     zIndex?: string;
     cursor?: string;
+    backgroundImage?: string;
 }
 
 interface PropsButton {
@@ -49,6 +50,11 @@ interface PropsText {
     top?: string;
     left?: string;
     textAlign?: string;
+    width?: string;
+    height?: string;
+    display?: string;
+    justify?: string;
+    align?: string;
 }
 
 interface PropsImg {
@@ -77,7 +83,9 @@ export const Div = styled.div<PropsDiv>`
                 display: ${value};
             }`
 })};
+
     width: ${({ width = "100%" }) => (width ? width : "100%")};
+    background-image: url(${({ backgroundImage = "none" }) => (backgroundImage ? backgroundImage : "100%")});
     height: ${({ height = "auto" }) => (height ? height : "auto")};
     justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
     align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
@@ -139,12 +147,10 @@ export const H1 = styled.h1<PropsText>`
             font-weight: ${value};
             }`
 })};
-text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    width: 100%;
-    height: 100%;
+    text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -168,6 +174,9 @@ export const H2 = styled.h2<PropsText>`
             }`
 })};
 text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -180,11 +189,8 @@ text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
     }
 `
 export const H3 = styled.h3<PropsText>`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    width: ${({ width = "auto" }) => (width ? width : "auto")};
+    height: ${({ height = "auto" }) => (height ? height : "auto")};
     ${(props) => Object.entries(props.fontSize ?? {}).map(([key, value]) => {
     return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
                 font-size: ${value};
@@ -196,6 +202,9 @@ export const H3 = styled.h3<PropsText>`
             }`
 })};
 text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -219,6 +228,9 @@ export const H4 = styled.h4<PropsText>`
             }`
 })};
 text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -243,6 +255,9 @@ export const H5 = styled.h5<PropsText>`
             }`
 })};
 text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -266,6 +281,9 @@ export const H6 = styled.h6<PropsText>`
             }`
 })};
 text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -289,6 +307,9 @@ export const Paragraph = styled.p<PropsText>`
             }`
 })};
 text-align: ${({ textAlign = "auto" }) => (textAlign ? textAlign : "auto")};
+    display: ${({ display = "block" }) => (display ? display : "block")};
+    justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
+    align-items: ${({ align = "flex-start" }) => (align ? align : "flex-start")};
     color: ${({ color = Color.black }) => (color ? color : Color.black)};
     font-family: 'Open Sans', sans-serif;
     margin: ${({ margin = "0" }) => (margin ? margin : "0")};
@@ -318,4 +339,3 @@ export const Img = styled.img<PropsImg>`
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     filter: brightness(${({ filter = "100%" }) => (filter ? filter : "auto")});
 `
-
