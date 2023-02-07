@@ -112,6 +112,11 @@ function Header() {
                                                 fontWeight={{ sm: "500", md: "500", lg: "600" }}
                                                 cursor="pointer"
                                                 hoverColor="red"
+                                                width="100%"
+                                                height="100%"
+                                                display="flex"
+                                                justify="center"
+                                                align="center"
                                             >
                                                 Watch trailer
                                             </H3>
