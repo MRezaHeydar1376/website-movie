@@ -62,10 +62,10 @@ function Header() {
                                     align="center"
                                     direction="column"
                                 >
-                                    <Div width="80%" height="20%" padding="0 0 20px 0">
+                                    <Div width="80%" height="20%" padding="0 0 20px 0" margin="0px 0 50px 0 ">
                                         <H1
                                             color={Color.white}
-                                            fontSize={{ sm: "40px", md: "60px", lg: "45px", xl: "60px" }}
+                                            fontSize={{ sm: "40px", md: "60px", lg: "45px", xl: "50px" }}
                                             fontWeight={{ sm: "500", md: "600", lg: "600" }}
                                         >
                                             {background.title}
