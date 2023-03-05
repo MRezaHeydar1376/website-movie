@@ -4,7 +4,7 @@ import { Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { Movie } from "../api/tmdbApi";
+import { Movie, Tv } from "../api/tmdbApi";
 import apiConfig from "../api/api_config";
 import { Color } from "../variables";
 import { useState } from "react";
@@ -12,10 +12,12 @@ import { Youtube } from "../assets";
 
 interface Props {
     title: string;
-    movies?: Movie[];
+    movies?: (Movie | Tv)[];
 }
 
 function Slider({ movies, title }: Props) {
+
+    console.log(movies, typeof movies)
 
     const [mouseIn, setMouseIn] = useState(0);
 
@@ -24,7 +26,7 @@ function Slider({ movies, title }: Props) {
     };
     function onSelected() {
         setMouseIn(0)
-    }
+    };
 
     return (
         <Div padding="10px 0">
@@ -79,38 +81,42 @@ function Slider({ movies, title }: Props) {
                 modules={[Autoplay]}
                 className="mySwiper"
             >
-                {movies ? movies.map(image => (
-                    <Div key={image.id} borderRadius="5px">
-                        <SwiperSlide>
-                            <Div position="relative">
-                                <Img
-                                    onMouseMove={() => selectedCard(image.id)}
-                                    onMouseLeave={onSelected}
-                                    src={apiConfig.w500Image(image.poster_path)}
-                                    borderRadius="8px"
-                                    Width={{ xs: "100%" }}
-                                    Height={{ xs: "300px" }}
-                                    filter={mouseIn === image.id ? "20%" : "100%"}
-                                    cursor="pointer"
-                                />
-                                {mouseIn === image.id ? (
+                {movies ? movies.map(image => {
+                    const hedearText = (image as unknown as Record<string, string | undefined>).original_name
+
+                    return (
+                        <Div key={image.id} borderRadius="5px">
+                            <SwiperSlide>
+                                <Div position="relative">
                                     <Img
                                         onMouseMove={() => selectedCard(image.id)}
-                                        src={Youtube}
-                                        height="60px"
-                                        position="absolute"
-                                        top="40%"
-                                        left="35%"
+                                        onMouseLeave={onSelected}
+                                        src={apiConfig.w500Image(image.poster_path)}
+                                        borderRadius="8px"
+                                        Width={{ xs: "100%" }}
+                                        Height={{ xs: "300px" }}
+                                        filter={mouseIn === image.id ? "20%" : "100%"}
                                         cursor="pointer"
                                     />
-                                ) : null}
-                            </Div>
-                            <H4 color={mouseIn === image.id ? Color.red : Color.white} fontSize={{ xs: "20px" }} fontWeight={{ xs: "600" }} textAlign="center">
-                                {image.original_title}
-                            </H4>
-                        </SwiperSlide>
-                    </Div>
-                )) : null}
+                                    {mouseIn === image.id ? (
+                                        <Img
+                                            onMouseMove={() => selectedCard(image.id)}
+                                            src={Youtube}
+                                            height="60px"
+                                            position="absolute"
+                                            top="40%"
+                                            left="35%"
+                                            cursor="pointer"
+                                        />
+                                    ) : null}
+                                </Div>
+                                <H4 color={mouseIn === image.id ? Color.red : Color.white} fontSize={{ xs: "20px" }} fontWeight={{ xs: "600" }} textAlign="center">
+                                    {hedearText ?? "no Name"}
+                                </H4>
+                            </SwiperSlide>
+                        </Div>
+                    )
+                }) : null}
             </Swiper>
         </Div>
     );

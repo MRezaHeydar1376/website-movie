@@ -10,7 +10,7 @@ export interface MovieObject {
 
 export interface TVObject {
     page: number;
-    results: Movie[];
+    results: Tv[];
     total_pages: number;
     total_results: number;
 }
@@ -33,22 +33,22 @@ export interface Movie {
     vote_count: number;
 };
 
+
 export interface Tv {
     key: string;
-    adult: boolean;
     backdrop_path: string;
-    genre_ids: number[];
+    first_air_date: string;
+    genre_ids: string;
     id: number;
+    name: string;
+    origin_country: string;
     original_language: string;
-    original_title: string;
+    original_name: string;
     overview: string;
     popularity: string;
     poster_path: string;
-    release_date: string;
-    title: string;
-    video: boolean;
-    vote_average: number;
-    vote_count: number;
+    vote_average: string;
+    vote_count: string;
 };
 
 export enum MovieType {

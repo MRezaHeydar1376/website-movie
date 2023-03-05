@@ -1,7 +1,9 @@
 import { css, Global } from '@emotion/react';
+import { Route } from 'react-router';
+import { Routes } from 'react-router-dom';
 import Footer from './layouts/footer';
 import TopNav from './layouts/top_nav';
-import { Home } from './pages';
+import { Details, Home } from './pages';
 import { Div } from './styles';
 
 function App() {
@@ -19,7 +21,10 @@ function App() {
       <Div position='fixed' zIndex='2'>
         <TopNav />
       </Div>
-      <Home />
+        <Routes>
+          <Route element={<Home />} path="/" />
+          <Route element={<Details />} path="/detail" />
+        </Routes>
       <Footer />
     </Div>
   );
