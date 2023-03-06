@@ -5,9 +5,11 @@ interface PropsDiv {
     width?: string;
     height?: string;
     displays?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
+    gridColumn?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
     justify?: string;
     align?: string;
     direction?: string;
+    wrap?: string;
     position?: string;
     top?: string;
     left?: string;
@@ -83,7 +85,13 @@ export const Div = styled.div<PropsDiv>`
                 display: ${value};
             }`
 })};
-
+${(props) => Object.entries(props.gridColumn ?? {}).map(([key, value]) => {
+    return `@media screen and (min-width: ${breakPoints[key as keyof typeof breakPoints]}){
+                grid-template-columns: ${value};
+            }`
+})};
+    gap: 0px;
+    flex-wrap: ${({ wrap = "nowrap" }) => (wrap ? wrap : "nowrap")};
     width: ${({ width = "100%" }) => (width ? width : "100%")};
     background-image: url(${({ backgroundImage = "none" }) => (backgroundImage ? backgroundImage : "100%")});
     height: ${({ height = "auto" }) => (height ? height : "auto")};
