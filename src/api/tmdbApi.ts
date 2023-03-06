@@ -3,7 +3,7 @@ import axiosClient from "./axios_client";
 
 export interface MovieObject {
     page: number;
-    results: Movie[];
+    results: (Movie & {original_title: string})[];
     total_pages: number;
     total_results: number;
 }
@@ -22,7 +22,7 @@ export interface Movie {
     genre_ids: number[];
     id: number;
     original_language: string;
-    original_title: string;
+    original_name: string;
     overview: string;
     popularity: string;
     poster_path: string;
@@ -32,8 +32,6 @@ export interface Movie {
     vote_average: number;
     vote_count: number;
 };
-
-
 export interface Tv {
     key: string;
     backdrop_path: string;
