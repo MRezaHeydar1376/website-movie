@@ -5,18 +5,27 @@ import { Color } from "../variables";
 interface Props {
     image: string;
     name: string;
+    width?: string;
+    height?: string;
+    fontSize?: string;
 }
 
-function Card({ image, name }: Props) {
+function Card({ image, name, width, height, fontSize }: Props) {
     return (
-        <Div width="350px" displays={{xs: "flex"}} direction="column" align="center">
+        <Div
+            width={width !== undefined ? width : "350px"}
+            displays={{ xs: "flex" }}
+            direction="column"
+            align="center"
+            margin="10px"
+        >
             <Img
                 src={apiConfig.w500Image(image)}
-                width="350px"
-                height="500px"
+                width={width !== undefined ? width : "350px"}
+                height={height !== undefined ? height : "500px"}
                 borderRadius="10px"
             />
-            <H3 color={Color.white} fontSize={{xs: "60px"}}>
+            <H3 color={Color.white} fontSize={{ xs: `${fontSize !== undefined ? fontSize : "60px"}` }}>
                 {name}
             </H3>
         </Div>
