@@ -82,8 +82,6 @@ function Slider({ movies, title }: Props) {
                 className="mySwiper"
             >
                 {movies ? movies.map(image => {
-                    const hedearText = (image as unknown as Record<string, string | undefined>).original_name
-
                     return (
                         <Div key={image.id} borderRadius="5px">
                             <SwiperSlide>
@@ -111,7 +109,7 @@ function Slider({ movies, title }: Props) {
                                     ) : null}
                                 </Div>
                                 <H4 color={mouseIn === image.id ? Color.red : Color.white} fontSize={{ xs: "20px" }} fontWeight={{ xs: "600" }} textAlign="center">
-                                    {hedearText ?? "no Name"}
+                                    {image.original_name}
                                 </H4>
                             </SwiperSlide>
                         </Div>
