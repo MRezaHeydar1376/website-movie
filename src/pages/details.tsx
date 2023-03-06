@@ -12,15 +12,13 @@ function Details() {
         (async () => {
             try {
                 const responseTV = await tmdbApi.getTvList(TvType.popular, 1)
-                setTvPopular(responseTV.data.results.slice(1, 2))
+                setTvPopular(responseTV.data.results)
             }
             catch (error) {
                 console.log(error)
             }
         })()
     }, [])
-
-    console.log(tvPopular)
 
     return (
         <Div>
@@ -37,9 +35,26 @@ function Details() {
             <Div>
 
             </Div>
-            <Div>
+            <Div
+                displays={{ xs: "grid" }}
+                gridColumn={{
+                    xs: "repeat(1, 1fr)",
+                    sm: "repeat(2, 1fr)",
+                    md: "repeat(3, 1fr)",
+                    lg: "repeat(4, 1fr)",
+                    xl: "repeat(5, 1fr)"
+                }}
+                wrap="wrap"
+                width="100%"
+            >
                 {tvPopular?.map(card => (
-                    <Card image={card.poster_path} name={card.name} />
+                    <Card
+                        image={card.poster_path}
+                        name={card.name}
+                        width="95%"
+                        height="330px"
+                        fontSize="20px"
+                    />
                 ))}
             </Div>
         </Div>
