@@ -15,8 +15,8 @@ function Home() {
                 const responsePopular = await tmdbApi.getMoviesList(MovieType.popular, 1)
                 const responseTopRated = await tmdbApi.getMoviesList(MovieType.top_rated, 1)
                 const responseTV = await tmdbApi.getTvList(TvType.popular, 1)
-                setMoviesPopular(responsePopular.data.results.slice(1, 20))
-                setMoviesTopRated(responseTopRated.data.results.slice(1, 20))
+                setMoviesPopular(responsePopular.data.results.slice(1, 20).map(({ original_title, ...movie }) => ({ ...movie, original_name: original_title })))
+                setMoviesTopRated(responseTopRated.data.results.slice(1, 20).map(({ original_title, ...movie }) => ({ ...movie, original_name: original_title })))
                 setTvPopular(responseTV.data.results.slice(1, 20))
             }
             catch (error) {
