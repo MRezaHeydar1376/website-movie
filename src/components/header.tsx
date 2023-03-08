@@ -124,7 +124,7 @@ function Header() {
                                     </Div>
                                 </Div>
                                 <Div width="100%" displays={{ xs: "none", sm: "none", md: "none", lg: "flex", xl: "flex" }} justify="center" >
-                                    <Card image={background.poster_path} name={""} />
+                                    <Card image={background.poster_path} name={""} hover={false} />
                                 </Div>
                             </Div>
                         </Div>

@@ -108,7 +108,13 @@ function Slider({ movies, title }: Props) {
                                         />
                                     ) : null}
                                 </Div>
-                                <H4 color={mouseIn === image.id ? Color.red : Color.white} fontSize={{ xs: "20px" }} fontWeight={{ xs: "600" }} textAlign="center">
+                                <H4
+                                    color={mouseIn === image.id ? Color.red : Color.white}
+                                    fontSize={{ xs: "20px" }}
+                                    fontWeight={{ xs: "600" }}
+                                    textAlign="center"
+                                    margin="15px 0"
+                                >
                                     {image.original_name}
                                 </H4>
                             </SwiperSlide>

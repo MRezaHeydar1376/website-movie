@@ -48,13 +48,16 @@ function Details() {
                 width="100%"
             >
                 {tvPopular?.map(card => (
-                    <Card
-                        image={card.poster_path}
-                        name={card.name}
-                        width="95%"
-                        height="330px"
-                        fontSize="20px"
-                    />
+                    <Div key={card.id}>
+                        <Card
+                            image={card.poster_path}
+                            name={card.name}
+                            width="95%"
+                            height="330px"
+                            fontSize="20px"
+                            hover={true}
+                        />
+                    </Div>
                 ))}
             </Div>
         </Div>
