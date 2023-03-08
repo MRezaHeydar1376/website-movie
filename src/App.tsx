@@ -3,7 +3,7 @@ import { Route } from 'react-router';
 import { Routes } from 'react-router-dom';
 import Footer from './layouts/footer';
 import TopNav from './layouts/top_nav';
-import { Details, Home } from './pages';
+import { Home, TVSeries } from './pages';
 import { Div } from './styles';
 
 function App() {
@@ -11,20 +11,23 @@ function App() {
     <Div>
       <Global
         styles={css`
-         body{
+          body{
             margin: 0;
             padding: 0;
             background:#0f0f0f;
+          }
+          a{
+            text-decoration: none;
           }
         `}
       />
       <Div position='fixed' zIndex='2'>
         <TopNav />
       </Div>
-        <Routes>
-          <Route element={<Home />} path="/" />
-          <Route element={<Details />} path="/detail" />
-        </Routes>
+      <Routes>
+        <Route element={<Home />} path="/" />
+        <Route element={<TVSeries />} path="/tv-series" />
+      </Routes>
       <Footer />
     </Div>
   );
