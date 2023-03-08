@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, Route } from "react-router-dom";
 import { Logo } from "../assets";
 import { Button, Div, H1, H3, Img } from "../styles";
 import { Color } from "../variables";
@@ -23,7 +24,7 @@ function TopNav() {
     useEffect(() => {
         changeBackground()
         window.addEventListener("scroll", changeBackground)
-    }, [navbar,changeBackground])
+    }, [navbar, changeBackground])
 
     return (
         <Div
@@ -52,66 +53,72 @@ function TopNav() {
                 </H1>
             </Div>
             <Div displays={{ xs: "flex", sm: "flex", md: "flex", lg: "flex" }} align="center" justify="end" margin="20px">
-                <Button
-                    width="80px"
-                    height="40px"
-                    margin="0 10px"
-                    border="none"
-                    borderButtom={active === 1 ? `2px solid ${Color.red}` : "2px solid transparent"}
-                    onClick={() => activeButton(1)}
-                >
-                    <H3
-                        fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
-                        fontWeight={{ sm: "500", md: "500", lg: "700" }}
-                        cursor="pointer"
-                        color={Color.white}
-                        hoverColor={Color.red}
+                <Link to="/">
+                    <Button
+                        width="80px"
+                        height="40px"
+                        margin="0 10px"
+                        border="none"
+                        borderButtom={active === 1 ? `2px solid ${Color.red}` : "2px solid transparent"}
+                        onClick={() => activeButton(1)}
                     >
-                        Home
-                    </H3>
-                </Button>
-                <Button
-                    width="80px"
-                    height="40px"
-                    margin="0 10px"
-                    border="none"
-                    display="flex"
-                    justify="center"
-                    borderButtom={active === 2 ? `2px solid ${Color.red}` : "2px solid transparent"}
-                    onClick={() => activeButton(2)}
-                >
-                    <H3
-                        fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
-                        fontWeight={{ sm: "500", md: "500", lg: "700" }}
-                        cursor="pointer"
-                        color={Color.white}
-                        hoverColor={Color.red}
-                        height="100%"
+                        <H3
+                            fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
+                            fontWeight={{ sm: "500", md: "500", lg: "700" }}
+                            cursor="pointer"
+                            color={Color.white}
+                            hoverColor={Color.red}
+                        >
+                            Home
+                        </H3>
+                    </Button>
+                </Link>
+                <Link to="movies">
+                    <Button
+                        width="80px"
+                        height="40px"
+                        margin="0 10px"
+                        border="none"
                         display="flex"
                         justify="center"
-                        align="center"
+                        borderButtom={active === 2 ? `2px solid ${Color.red}` : "2px solid transparent"}
+                        onClick={() => activeButton(2)}
                     >
-                        Movies
-                    </H3>
-                </Button>
-                <Button
-                    width="120px"
-                    height="40px"
-                    margin="0 10px"
-                    border="none"
-                    borderButtom={active === 3 ? `2px solid ${Color.red}` : "2px solid transparent"}
-                    onClick={() => activeButton(3)}
-                >
-                    <H3
-                        fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
-                        fontWeight={{ sm: "500", md: "500", lg: "700" }}
-                        cursor="pointer"
-                        color={Color.white}
-                        hoverColor={Color.red}
+                        <H3
+                            fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
+                            fontWeight={{ sm: "500", md: "500", lg: "700" }}
+                            cursor="pointer"
+                            color={Color.white}
+                            hoverColor={Color.red}
+                            height="100%"
+                            display="flex"
+                            justify="center"
+                            align="center"
+                        >
+                            Movies
+                        </H3>
+                    </Button>
+                </Link>
+                <Link to="tv-series">
+                    <Button
+                        width="120px"
+                        height="40px"
+                        margin="0 10px"
+                        border="none"
+                        borderButtom={active === 3 ? `2px solid ${Color.red}` : "2px solid transparent"}
+                        onClick={() => activeButton(3)}
                     >
-                        TV Series
-                    </H3>
-                </Button>
+                        <H3
+                            fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
+                            fontWeight={{ sm: "500", md: "500", lg: "700" }}
+                            cursor="pointer"
+                            color={Color.white}
+                            hoverColor={Color.red}
+                        >
+                            TV Series
+                        </H3>
+                    </Button>
+                </Link>
             </Div>
         </Div>
     );
