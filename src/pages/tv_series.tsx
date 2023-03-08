@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import tmdbApi, { Tv, TvType } from "../api/tmdbApi";
 import { FooterBg } from "../assets";
-import { Card, Slider } from "../components";
+import { Card, InputSearch, Slider } from "../components";
 import { Div, H1, H2 } from "../styles";
 import { Color } from "../variables";
 
@@ -32,8 +32,8 @@ function Details() {
             >
                 <H2 color={Color.white}>TV SERIES</H2>
             </Div>
-            <Div>
-
+            <Div minWidth="320px" width="40%" margin="0 10px">
+                <InputSearch />
             </Div>
             <Div
                 displays={{ xs: "grid" }}
