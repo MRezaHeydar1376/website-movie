@@ -2,6 +2,7 @@ import styled from "@emotion/styled/macro";
 import { Color } from "../variables";
 
 interface PropsDiv {
+    minWidth?: string;
     width?: string;
     height?: string;
     displays?: { xs?: string; sm?: string; md?: string; lg?: string; xl?: string; xxl?: string };
@@ -39,6 +40,11 @@ interface PropsButton {
     borderButtom?: string;
     hoverBackgrond?: string;
     hoverColor?: string;
+    position?: string;
+    top?: string;
+    left?: string;
+    boxShadow?: string;
+    hoverBoxShadow?: string;
 }
 
 interface PropsText {
@@ -70,6 +76,16 @@ interface PropsImg {
     filter?: string;
 }
 
+interface PropsInput {
+    width?: string;
+    height?: string;
+    backgroundColor?: string;
+    padding?: string;
+    color?: string;
+    border?: string;
+    borderRadius?: string;
+}
+
 const breakPoints = {
     xs: "370px",
     sm: "576px",
@@ -93,6 +109,7 @@ ${(props) => Object.entries(props.gridColumn ?? {}).map(([key, value]) => {
     gap: 0px;
     flex-wrap: ${({ wrap = "nowrap" }) => (wrap ? wrap : "nowrap")};
     width: ${({ width = "100%" }) => (width ? width : "100%")};
+    min-width: ${({ minWidth = "none" }) => (minWidth ? minWidth : "none")};
     background-image: url(${({ backgroundImage = "none" }) => (backgroundImage ? backgroundImage : "100%")});
     height: ${({ height = "auto" }) => (height ? height : "auto")};
     justify-content: ${({ justify = "start" }) => (justify ? justify : "start")};
@@ -139,8 +156,13 @@ export const Button = styled.button<PropsButton>`
     border-bottom: ${({ borderButtom = "none" }) => (borderButtom ? borderButtom : "none")};
     border-radius: ${({ borderRadius = "1px solid black" }) => (borderRadius ? borderRadius : "1px solid black")};
     margin: ${({ margin = "0px" }) => (margin ? margin : "0px")};
+    position: ${({ position = "block" }) => (position ? position : "row")};
+    top: ${({ top = "0px" }) => (top ? top : "0px")};
+    left: ${({ left = "none" }) => (left ? left : "none")};
+    box-shadow: ${({ boxShadow = "0px" }) => (boxShadow ? boxShadow : "0px")};
     cursor: pointer;
     &:hover {
+        box-shadow: ${({ hoverBoxShadow = "0px" }) => (hoverBoxShadow ? hoverBoxShadow : "0px")};
         background-color: ${({ hoverBackgrond = "none" }) => (hoverBackgrond ? hoverBackgrond : "none")};
     }
 `
@@ -346,4 +368,24 @@ export const Img = styled.img<PropsImg>`
     left: ${({ left = "0px" }) => (left ? left : "0px")};
     cursor: ${({ cursor = "auto" }) => (cursor ? cursor : "auto")};
     filter: brightness(${({ filter = "100%" }) => (filter ? filter : "auto")});
+`
+export const Input = styled.input<PropsInput>`
+    width: ${({ width = "100%" }) => (width ? width : "100%")};
+    height: ${({ height = "auto" }) => (height ? height : "auto")};
+    background-color: ${({ backgroundColor = "tranparent" }) => (backgroundColor ? backgroundColor : "tranparent")};
+    padding: ${({ padding = "0px" }) => (padding ? padding : "0px")};
+    color: ${({ color = "0px" }) => (color ? color : "0px")};
+    border: ${({ border = "0.5px solid black" }) => (border ? border : "0.5px solid black")};
+    border-radius: ${({ borderRadius = "0px" }) => (borderRadius ? borderRadius : "0px")};
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    font-size: 17px;
+    &::placeholder {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 700;
+    }
+    &:focus {
+        outline: none;
+    }
 `
