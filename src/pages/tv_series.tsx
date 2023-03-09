@@ -1,39 +1,59 @@
 import { useEffect, useState } from "react";
-import tmdbApi, { Category, Tv, TvType } from "../api/tmdbApi";
+import { Pathname, useLocation } from "react-router-dom";
+import tmdbApi, { Category, Movie, MovieType, Tv, TvType } from "../api/tmdbApi";
 import { FooterBg } from "../assets";
 import { Card, InputSearch, } from "../components";
 import { Button, Div, H2, H3 } from "../styles";
 import { Color } from "../variables";
 
 function TVSearies() {
-    const [tvPopular, setTvPopular] = useState<Tv[]>([]);
+    const [movies, setMovies] = useState<Movie[]>([]);
+    const [TVs, setTVs] = useState<Tv[]>([]);
     const [search, setSearch] = useState("");
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useState(1);
+    const { pathname } = useLocation();
 
     useEffect(() => {
         (async () => {
             if (search === "" || search.trim() === "") {
                 try {
-                    const responseTV = await tmdbApi.getTvList(TvType.popular, page)
-                    setTvPopular([...tvPopular, ...responseTV.data.results])
+                    if (pathname === "/tv-series") {
+                        const response = await tmdbApi.getTvList(TvType.popular, page)
+                        setTVs([...TVs, ...response.data.results])
+                    } else if (pathname === "/movies") {
+                        const response = await tmdbApi.getMoviesList(MovieType.popular, page)
+                        setMovies([...movies, ...response.data.results])
+                    }
                 }
                 catch (error) {
                     console.log(error)
                 }
             } else {
-                const responseTV = await tmdbApi.search(Category.tv, page, search)
-                setTvPopular([...tvPopular, ...responseTV.data.results])
+                if (pathname === "/tv-series") {
+                    const response = await tmdbApi.search(Category.tv, page, search)
+                    setTVs([...TVs, ...response.data.results])
+                } else if (pathname === "/movies") {
+                    const response = await tmdbApi.search(Category.movie, page, search)
+                    setMovies([...movies, ...response.data.results])
+                }
             }
         })()
-    }, [search, page]);
+
+    }, [search, page, pathname]);
+
+    useEffect(() => {
+        setMovies([]);
+        setTVs([]);
+    }, [pathname])
 
     function getValue(value: string) {
         setPage(1)
         setSearch(value);
-        setTvPopular([]);
+        setMovies([]);
+        setTVs([]);
     };
 
-    function loadMoreTV() {
+    function loadMoreFilm() {
         setPage(page + 1);
     };
 
@@ -64,18 +84,33 @@ function TVSearies() {
                 wrap="wrap"
                 width="100%"
             >
-                {tvPopular?.map(card => (
-                    <Div key={card.id}>
-                        <Card
-                            image={card.poster_path}
-                            name={card.name}
-                            width="95%"
-                            height="330px"
-                            fontSize="20px"
-                            hover={true}
-                        />
-                    </Div>
-                ))}
+                {pathname === "/tv-series" ? (
+                    TVs?.map(card => (
+                        <Div key={card.id}>
+                            <Card
+                                image={card.poster_path}
+                                name={card.original_name}
+                                width="95%"
+                                height="330px"
+                                fontSize="20px"
+                                hover={true}
+                            />
+                        </Div>
+                    ))
+                ) : pathname === "/movies" ? (
+                    movies?.map(card => (
+                        <Div key={card.id}>
+                            <Card
+                                image={card.poster_path}
+                                name={card.original_name}
+                                width="95%"
+                                height="330px"
+                                fontSize="20px"
+                                hover={true}
+                            />
+                        </Div>
+                    ))
+                ) : (null)}
             </Div>
             <Div displays={{ xs: "flex" }} justify="center" margin="20px 0">
                 <Button
@@ -90,7 +125,7 @@ function TVSearies() {
                     hoverColor={Color.red}
                     display="flex"
                     align="center"
-                    onClick={loadMoreTV}
+                    onClick={loadMoreFilm}
                 >
                     <H3
                         color={Color.white}
