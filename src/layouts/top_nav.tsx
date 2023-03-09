@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useLocation } from "react-router-dom";
 import { Logo } from "../assets";
 import { Button, Div, H1, H3, Img } from "../styles";
 import { Color } from "../variables";
@@ -7,11 +7,8 @@ import { Color } from "../variables";
 function TopNav() {
 
     const [active, setActive] = useState(1);
-    const [navbar, setNavbar] = useState(false)
-
-    function activeButton(id: number) {
-        setActive(id)
-    };
+    const [navbar, setNavbar] = useState(false);
+    const { pathname } = useLocation();
 
     const changeBackground = () => {
         if (window.scrollY >= 66) {
@@ -59,8 +56,11 @@ function TopNav() {
                         height="40px"
                         margin="0 10px"
                         border="none"
-                        borderButtom={active === 1 ? `2px solid ${Color.red}` : "2px solid transparent"}
-                        onClick={() => activeButton(1)}
+                        borderButtom={
+                            pathname === "/" ?
+                                `2px solid ${Color.red}` :
+                                "2px solid transparent"
+                        }
                     >
                         <H3
                             fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
@@ -81,8 +81,11 @@ function TopNav() {
                         border="none"
                         display="flex"
                         justify="center"
-                        borderButtom={active === 2 ? `2px solid ${Color.red}` : "2px solid transparent"}
-                        onClick={() => activeButton(2)}
+                        borderButtom={
+                            pathname === "/movies" ?
+                                `2px solid ${Color.red}` :
+                                "2px solid transparent"
+                        }
                     >
                         <H3
                             fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
@@ -105,8 +108,11 @@ function TopNav() {
                         height="40px"
                         margin="0 10px"
                         border="none"
-                        borderButtom={active === 3 ? `2px solid ${Color.red}` : "2px solid transparent"}
-                        onClick={() => activeButton(3)}
+                        borderButtom={
+                            pathname === "/tv-series" ?
+                                `2px solid ${Color.red}` :
+                                "2px solid transparent"
+                        }
                     >
                         <H3
                             fontSize={{ sm: "15px", md: "18px", lg: "23px" }}
