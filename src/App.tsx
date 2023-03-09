@@ -27,6 +27,7 @@ function App() {
       <Routes>
         <Route element={<Home />} path="/" />
         <Route element={<TVSeries />} path="/tv-series" />
+        <Route element={<TVSeries />} path="/movies" />
       </Routes>
       <Footer />
     </Div>
