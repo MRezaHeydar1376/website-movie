@@ -75,8 +75,8 @@ const tmdbApi = {
     getVideos: (category: Category, id: number) => {
         return axiosClient.get(`3/${category}/${id}/videos?api_key=${apiConfig.api_Key}`)
     },
-    search: (category: Category, page: number) => {
-        return axiosClient.get(`3/search/${category}?api_key=${apiConfig.api_Key}&page=${page}`)
+    search: (category: Category, page: number, query: string) => {
+        return axiosClient.get(`3/search/${category}?api_key=${apiConfig.api_Key}&page=${page}&query=${query}`)
     },
     detail: (category: Category, id: number) => {
         return axiosClient.get(`3/${category}/${id}/?api_key=${apiConfig.api_Key}`)
