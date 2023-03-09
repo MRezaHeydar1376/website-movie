@@ -1,24 +1,34 @@
 import { useEffect, useState } from "react";
-import tmdbApi, { Tv, TvType } from "../api/tmdbApi";
+import tmdbApi, { Category, Tv, TvType } from "../api/tmdbApi";
 import { FooterBg } from "../assets";
-import { Card, InputSearch, Slider } from "../components";
-import { Div, H1, H2 } from "../styles";
+import { Card, InputSearch, } from "../components";
+import { Div, H2 } from "../styles";
 import { Color } from "../variables";
 
-function Details() {
+function TVSearies() {
     const [tvPopular, setTvPopular] = useState<Tv[]>();
+    const [search, setSearch] = useState("");
 
     useEffect(() => {
         (async () => {
-            try {
-                const responseTV = await tmdbApi.getTvList(TvType.popular, 1)
+            if(search === "" || search.trim() === "") {
+                try {
+                    const responseTV = await tmdbApi.getTvList(TvType.popular, 1)
+                    setTvPopular(responseTV.data.results)
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            } else {
+                const responseTV = await tmdbApi.search(Category.tv, 1, search)
                 setTvPopular(responseTV.data.results)
             }
-            catch (error) {
-                console.log(error)
-            }
         })()
-    }, [])
+    }, [search]);
+
+    function getValue(value: string) {
+        setSearch(value);
+    };
 
     return (
         <Div>
@@ -33,7 +43,7 @@ function Details() {
                 <H2 color={Color.white}>TV SERIES</H2>
             </Div>
             <Div minWidth="320px" width="40%" margin="0 10px">
-                <InputSearch />
+                <InputSearch getValue={getValue}/>
             </Div>
             <Div
                 displays={{ xs: "grid" }}
@@ -64,4 +74,4 @@ function Details() {
     );
 }
 
-export default Details;
+export default TVSearies;
